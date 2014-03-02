@@ -2,7 +2,7 @@
 
 <ul>
 <% @polls.each do |poll| %>
-	<li><%= poll.question %></li>
+	<li><%= link_to poll.question, poll %></li>
 <% end %>
 </ul>
 
