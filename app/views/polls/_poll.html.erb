@@ -1,0 +1,8 @@
+<%= div_for poll do %>
+	<h3>
+		<%= link_to poll.question, poll %>
+	</h3>
+	<% @poll.answers.each do |answer| %>
+		<li><%= answer.text %> - <%= answer.value %></li>
+	<% end %>
+<% end %>
