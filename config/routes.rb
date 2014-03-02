@@ -1,4 +1,10 @@
 Polls::Application.routes.draw do
+  root :to => "polls#index"
+
+  resources :polls do
+    resources :answers
+  end
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
