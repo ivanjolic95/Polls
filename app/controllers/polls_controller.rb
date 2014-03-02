@@ -2,6 +2,10 @@ class PollsController < ApplicationController
 
 	before_action :set_poll, only: [:show, :edit, :update, :destroy]
 
+	def index
+		@polls = Poll.all
+	end
+	
 	def new
 		@poll = Poll.new
 	end
