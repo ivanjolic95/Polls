@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140302102251) do
+ActiveRecord::Schema.define(version: 20140302102532) do
+
+  create_table "answers", force: true do |t|
+    t.string   "text"
+    t.integer  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "polls", force: true do |t|
     t.string   "question"
