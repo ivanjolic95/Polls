@@ -6,6 +6,9 @@ class PollsController < ApplicationController
 		@polls = Poll.all
 	end
 
+	def show
+	end
+
 	def new
 		@poll = Poll.new
 	end
