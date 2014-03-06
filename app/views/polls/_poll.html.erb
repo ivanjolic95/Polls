@@ -6,7 +6,10 @@
 			<%= link_to "Delete", poll, confirm: "Are you sure?", method: :delete %>
 		</span>
 	</h3>
+	<table>
+	<tr><td>Odgovor</td><td>Broj glasova</td></tr>
 	<% @poll.answers.each do |answer| %>
-		<li><%= answer.text %> - <%= answer.value %></li>
+		<tr><td><%= answer.text %></td><td><%= answer.value %><td></tr>
 	<% end %>
+	</table>
 <% end %>
