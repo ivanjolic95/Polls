@@ -16,10 +16,15 @@ class PollsController < ApplicationController
 
 	def create
 		@poll = Poll.new(poll_params)
-		if @poll.save
-			redirect_to @poll, notice: 'Anketa je uspjesno kreirana.'
-		else
-			render action: :new
+
+		respond_to do |format|
+			if @poll.save
+				format.html { redirect_to @poll, notice: 'Anketa je uspjesno kreirana.' }
+				format.json { render action: 'show', status: :created, location: @poll }
+			else
+				format.html { render action: :new }
+				format.json { render json: @poll.errors, status: :unprocessable_entity }
+			end
 		end
 	end
 
@@ -28,17 +33,23 @@ class PollsController < ApplicationController
 	end
 
 	def update
-		if @poll.update(poll_params)
-			redirect_to @poll, notice: 'Anketa je uspjesno azurirana.'
-		else
-			render action: :edit
+		respond_to do |format|
+			if @poll.update(poll_params)
+				format.html { redirect_to @poll, notice: 'Anketa je uspjesno azurirana.' }
+				format.json { head :no_content }
+			else
+				format.html { render action: :edit }
+				format.json { render json: @poll.errors, status: :unprocessabble_entity }
+			end
 		end
 	end
 
 	def destroy
-		@poll = Poll.find(params[:id])
 		@poll.destroy
-		redirect_to polls_url
+		respond_to do |format|
+			format.html { redirect_to polls_url }
+			format.json { head :no_content }
+		end
 	end
 
 	def destroy_multiple
@@ -48,8 +59,10 @@ class PollsController < ApplicationController
 		rescue
 			notice = "Niste odabrali ni jednu anketu."
 		end
-
-		redirect_to polls_path, notice: notice
+		respond_to do |format|
+			format.html { redirect_to polls_url, notice: 'Anketa je uspjesno azurirana.' }
+			format.json { head :no_content }
+		end
 	end
 
 	private
