@@ -1,13 +1,13 @@
 <h1>List of polls</h1>
 
-<ul>
+<table border="0">
 <% @polls.each do |poll| %>
-	<li><%= link_to poll.question, poll %>
-		<span class='actions'>
-			<%= link_to "Edit", edit_poll_path(poll) %>
-			<%= link_to "Delete", poll, confirm: "Are you sure?", method: :delete %>
-		</span></li>
+	<tr>
+		<td><%= link_to poll.question, poll %></td>
+		<td><%= link_to "Edit", edit_poll_path(poll) %></td>
+		<td><%= link_to "Delete", poll, confirm: "Are you sure?", method: :delete %></td>
+	</tr>
 <% end %>
-</ul>
+</table>
 
 <%= link_to 'New Poll', new_poll_path %>
