@@ -1,5 +1,5 @@
 Polls::Application.routes.draw do
-  root :to => "polls#index"
+  root 'polls#index'
 
   resources :polls do
     resources :answers
