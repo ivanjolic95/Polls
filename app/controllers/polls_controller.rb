@@ -11,6 +11,7 @@ class PollsController < ApplicationController
 
 	def new
 		@poll = Poll.new
+		@numOfAnswers = 1
 	end
 
 	def create
@@ -23,6 +24,7 @@ class PollsController < ApplicationController
 	end
 
 	def edit
+		@numOfAnswers = @poll.answers.size + 1
 	end
 
 	def update
@@ -46,7 +48,7 @@ class PollsController < ApplicationController
 
 	def poll_params
 		params.require(:poll).permit(:question, :visible,
-			:answers_attributes => [:text])
+			:answers_attributes => [:id,:text])
 	end
 
 end

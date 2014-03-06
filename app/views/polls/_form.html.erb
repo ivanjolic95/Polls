@@ -24,10 +24,8 @@
   <div class="field">
   <label>Answers</label><br>
   <div id="answers">
-  <% 2.times do %>
-    <%= f.fields_for :answers, f.object.answers.build do |a| %>
-      <%= a.text_field :text %><br>
-    <% end %>
+  <%= f.fields_for :answers, f.object.answers || f.object.answers.build do |a| %>
+    <%= a.text_field :text %><br>
   <% end %>
   </div>
   <a href="#" id="addAnswer">Add Answer</a>
@@ -40,11 +38,12 @@
 
 <script>
 
-var count = 1;
+var count = <%= @numOfAnswers %>;
 
 $(document).ready(function() {
   $('#addAnswer').click(function() {
-    $('#answers').append('<input id="poll_answers_attributes_2_text" name="poll[answers_attributes][2][text]" type="text" /><br>');
+    $('#answers').append('<input id="poll_answers_attributes_'+count+'_text" name="poll[answers_attributes]['+count+'][text]" type="text" /><br>');
+    ++count;
   });
 });
 </script>
