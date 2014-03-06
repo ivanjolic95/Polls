@@ -45,7 +45,8 @@ class PollsController < ApplicationController
 	end
 
 	def poll_params
-		params.require(:poll).permit(:question, :visible)
+		params.require(:poll).permit(:question, :visible,
+			:answers_attributes => [:text])
 	end
 
 end

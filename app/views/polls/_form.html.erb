@@ -15,8 +15,36 @@
     <%= f.label :question %><br>
     <%= f.text_field :question %>
   </div>
+
+  <div class="field">
+    <%= f.label :visible %><br>
+    <%= f.check_box :visible %>
+  </div>
+
+  <div class="field">
+  <label>Answers</label><br>
+  <div id="answers">
+  <% 2.times do %>
+    <%= f.fields_for :answers, f.object.answers.build do |a| %>
+      <%= a.text_field :text %><br>
+    <% end %>
+  <% end %>
+  </div>
+  <a href="#" id="addAnswer">Add Answer</a>
+  </div>
   
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+<script>
+
+var count = 1;
+
+$(document).ready(function() {
+  $('#addAnswer').click(function() {
+    $('#answers').append('<input id="poll_answers_attributes_2_text" name="poll[answers_attributes][2][text]" type="text" /><br>');
+  });
+});
+</script>

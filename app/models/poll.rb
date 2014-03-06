@@ -3,5 +3,7 @@ class Poll < ActiveRecord::Base
 
 	has_many :answers, :dependent => :delete_all
 
+	accepts_nested_attributes_for :answers
+
 	scope :active, lambda { where(:visible => true) }
 end
