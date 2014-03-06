@@ -3,7 +3,7 @@ class Answer < ActiveRecord::Base
 
 	belongs_to :poll
 
-	before_save :set_value_to_zero
+	before_create :set_value_to_zero
 
 	def set_value_to_zero
 		self.value = 0
