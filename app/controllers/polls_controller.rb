@@ -41,6 +41,17 @@ class PollsController < ApplicationController
 		redirect_to polls_url
 	end
 
+	def destroy_multiple
+		begin
+			Poll.destroy(params[:polls])
+			notice = "Ankete uspjesno obrisane."
+		rescue
+			notice = "Niste odabrali ni jednu anketu."
+		end
+
+		redirect_to polls_path, notice: notice
+	end
+
 	private
 	def set_poll
 		@poll = Poll.find(params[:id])

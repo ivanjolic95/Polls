@@ -1,13 +1,19 @@
 <h1>List of polls</h1>
 
+<div id="notice"><%= notice %></div>
+
+<%= form_tag destroy_multiple_polls_path, method: :delete do %>
 <table border="0">
 <% @polls.each do |poll| %>
 	<tr>
 		<td><%= link_to poll.question, poll %></td>
 		<td><%= link_to "Edit", edit_poll_path(poll) %></td>
 		<td><%= link_to "Delete", poll, confirm: "Are you sure?", method: :delete %></td>
+		<td><%= check_box_tag "polls[]", poll.id %></td>
 	</tr>
 <% end %>
 </table>
+<%= submit_tag "Delete selected" %>
+<% end %>
 
 <%= link_to 'New Poll', new_poll_path %>
