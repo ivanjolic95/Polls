@@ -1,6 +1,7 @@
 class PollsController < ApplicationController
 	skip_before_action :authorize, only: [:index, :show, :vote]
 	before_action :set_poll, only: [:show, :edit, :update, :destroy, :vote]
+	skip_before_filter :verify_authenticity_token, :only => :vote
 
 	def index
 		@polls = Poll.all

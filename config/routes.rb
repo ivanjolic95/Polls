@@ -16,7 +16,7 @@ Polls::Application.routes.draw do
     resources :answers
     collection do
       delete 'destroy_multiple'
-      get ':id/vote' => :vote
+      post ':id/vote' => :vote
     end
   end
   
