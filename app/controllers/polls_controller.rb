@@ -1,5 +1,5 @@
 class PollsController < ApplicationController
-
+	skip_before_action :authorize, only: [:index, :show]
 	before_action :set_poll, only: [:show, :edit, :update, :destroy]
 
 	def index
