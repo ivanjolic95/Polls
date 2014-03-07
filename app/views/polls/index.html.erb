@@ -22,5 +22,6 @@
 
 <% if session[:user_id] %>
 <%= link_to 'New Poll', new_poll_path %><br><br>
+<%= link_to 'Users', users_path %><br><br>
 <%= link_to 'Logout', logout_path, method: :delete %>
 <% end %>
