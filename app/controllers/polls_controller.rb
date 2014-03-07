@@ -71,12 +71,15 @@ class PollsController < ApplicationController
 		begin
 			@poll.vote(id)
 			notice = "Uspjesno ste glasali."
+			s = '{"success":1}'
 		rescue
 			notice = "Vas glas nazalost nije prihvacen."
+			s = '{"success":0}'
 		end
+		json = JSON.parse(s)
 		respond_to do |format|
 			format.html { redirect_to @poll, notice: notice }
-			format.json { render action: 'show', status: :ok, location: @poll }
+			format.json { render json: json }
 		end
 	end
 
