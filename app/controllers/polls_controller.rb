@@ -1,6 +1,6 @@
 class PollsController < ApplicationController
-	skip_before_action :authorize, only: [:index, :show]
-	before_action :set_poll, only: [:show, :edit, :update, :destroy]
+	skip_before_action :authorize, only: [:index, :show, :vote]
+	before_action :set_poll, only: [:show, :edit, :update, :destroy, :vote]
 
 	def index
 		@polls = Poll.all
@@ -62,6 +62,20 @@ class PollsController < ApplicationController
 		respond_to do |format|
 			format.html { redirect_to polls_url, notice: notice }
 			format.json { head :no_content }
+		end
+	end
+
+	def vote
+		id = params[:aid]
+		begin
+			@poll.vote(id)
+			notice = "Uspjesno ste glasali."
+		rescue
+			notice = "Vas glas nazalost nije prihvacen."
+		end
+		respond_to do |format|
+			format.html { redirect_to @poll, notice: notice }
+			format.json { render action: 'show', status: :ok, location: @poll }
 		end
 	end
 
