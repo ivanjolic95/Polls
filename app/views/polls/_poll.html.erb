@@ -8,7 +8,7 @@
 	</h3>
 	<table>
 	<tr><td>Odgovor</td><td>Broj glasova</td></tr>
-	<% @poll.answers.each do |answer| %>
+	<% @poll.answers.order(:value).reverse.each do |answer| %>
 		<tr><td><%= answer.text %></td><td><%= answer.value %><td></tr>
 	<% end %>
 	</table>
