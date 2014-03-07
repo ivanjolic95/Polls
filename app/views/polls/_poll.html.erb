@@ -8,10 +8,16 @@
 		</span>
 		<% end %>
 	</h3>
+	<%= form_tag url_for(:controller => 'polls', :action => 'vote'), :method => 'post' do %>
 	<table>
 	<tr><td>Odgovor</td><td>Broj glasova</td></tr>
 	<% @poll.answers.order(:value).reverse.each do |answer| %>
-		<tr><td><%= answer.text %></td><td><%= answer.value %><td></tr>
+		<tr>
+			<td><%= radio_button_tag 'aid', answer.id, false %> <%= answer.text %></td>
+			<td><%= answer.value %><td>
+		</tr>
 	<% end %>
 	</table>
+	<%= submit_tag 'Vote' %>
+	<% end %>
 <% end %>
