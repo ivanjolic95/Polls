@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140302102726) do
+ActiveRecord::Schema.define(version: 20140307105430) do
 
   create_table "answers", force: true do |t|
     t.string   "text"
@@ -24,6 +24,13 @@ ActiveRecord::Schema.define(version: 20140302102726) do
   create_table "polls", force: true do |t|
     t.string   "question"
     t.boolean  "visible"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,4 +1,6 @@
 Polls::Application.routes.draw do
+  resources :users
+
   root 'polls#index'
 
   resources :polls do
