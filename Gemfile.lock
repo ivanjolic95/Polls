@@ -137,7 +137,6 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   jbuilder (~> 1.2)
   jquery-rails
-  json
   less-rails
   pg
   rails (= 4.0.3)
