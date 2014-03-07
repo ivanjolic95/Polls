@@ -4,7 +4,11 @@ class PollsController < ApplicationController
 	skip_before_filter :verify_authenticity_token, :only => :vote
 
 	def index
-		@polls = Poll.all
+		if session[:user_id]
+			@polls = Poll.all
+		else
+			@polls = Poll.active
+		end
 	end
 
 	def show
@@ -85,7 +89,13 @@ class PollsController < ApplicationController
 
 	private
 	def set_poll
-		@poll = Poll.find(params[:id])
+		if session[:user_id]
+			@poll = Poll.find(params[:id])
+		else
+			if Poll.find(params[:id]).visible
+				@poll = Poll.find(params[:id])
+			end
+		end
 	end
 
 	def poll_params
