@@ -7,14 +7,20 @@
 <% @polls.each do |poll| %>
 	<tr>
 		<td><%= link_to poll.question, poll %></td>
+		<% if session[:user_id] %>
 		<td><%= link_to "Edit", edit_poll_path(poll) %></td>
 		<td><%= link_to "Delete", poll, confirm: "Are you sure?", method: :delete %></td>
 		<td><%= check_box_tag "polls[]", poll.id %></td>
+		<% end %>
 	</tr>
 <% end %>
 </table>
+<% if session[:user_id] %>
 <%= submit_tag "Delete selected" %>
 <% end %>
+<% end %>
 
+<% if session[:user_id] %>
 <%= link_to 'New Poll', new_poll_path %><br><br>
 <%= link_to 'Logout', logout_path, method: :delete %>
+<% end %>

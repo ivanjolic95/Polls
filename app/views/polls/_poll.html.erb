@@ -1,10 +1,12 @@
 <%= div_for poll do %>
 	<h3>
 		<%= link_to poll.question, poll %>
+		<% if session[:user_id] %>
 		<span class='actions'>
 			<%= link_to "Edit", edit_poll_path(poll) %>
 			<%= link_to "Delete", poll, confirm: "Are you sure?", method: :delete %>
 		</span>
+		<% end %>
 	</h3>
 	<table>
 	<tr><td>Odgovor</td><td>Broj glasova</td></tr>
