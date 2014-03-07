@@ -60,7 +60,7 @@ class PollsController < ApplicationController
 			notice = "Niste odabrali ni jednu anketu."
 		end
 		respond_to do |format|
-			format.html { redirect_to polls_url, notice: 'Anketa je uspjesno azurirana.' }
+			format.html { redirect_to polls_url, notice: notice }
 			format.json { head :no_content }
 		end
 	end
