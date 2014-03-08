@@ -12,4 +12,8 @@ class Poll < ActiveRecord::Base
 		a.value += 1;
 		a.save
 	end
+
+	def number_of_votes?
+		self.answers.inject(0) { |res, ans| res + ans.value }
+	end
 end
