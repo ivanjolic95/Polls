@@ -11,7 +11,7 @@
 	<%= form_tag url_for(:controller => 'polls', :action => 'vote'), :method => 'post' do %>
 	<table>
 	<tr><td>Odgovor</td><td>Broj glasova</td></tr>
-	<% @poll.answers.order(:value).reverse.each do |answer| %>
+	<% @poll.answers.order('value DESC').each do |answer| %>
 		<tr>
 			<td><%= radio_button_tag 'aid', answer.id, false %> <%= answer.text %></td>
 			<td><%= answer.value %><td>
